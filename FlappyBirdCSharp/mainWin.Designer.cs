@@ -58,8 +58,8 @@
             this.scoreText.AutoSize = true;
             this.scoreText.BackColor = System.Drawing.Color.Transparent;
             this.scoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreText.ForeColor = System.Drawing.Color.White;
-            this.scoreText.Location = new System.Drawing.Point(43, 43);
+            this.scoreText.ForeColor = System.Drawing.Color.Blue;
+            this.scoreText.Location = new System.Drawing.Point(43, 45);
             this.scoreText.Name = "scoreText";
             this.scoreText.Size = new System.Drawing.Size(211, 55);
             this.scoreText.TabIndex = 4;

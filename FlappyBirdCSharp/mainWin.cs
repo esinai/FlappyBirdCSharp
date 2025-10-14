@@ -413,6 +413,11 @@ namespace FlappyBirdCSharp
                     gameTimer.Interval = 30;
                     btnSave.Visible = false;
                     btnSave.Enabled = false;
+                    label1.Text = "";
+                    label2.Text = "";
+                    lblGen.Visible = false;
+                    bestScoreTime.Visible = false;
+                    btnSave.Visible = false;
                     StartSingleGame();
                     break;
                 case NetParams.GAME_MODE.TRAINING:
@@ -425,6 +430,11 @@ namespace FlappyBirdCSharp
                     this.Text = "Flappy Bird - Loading";
                     bird.Visible = true;
                     gameTimer.Interval = 20;
+                    restartButton.Visible = false;
+                    label1.Text = "";
+                    label2.Text = "";
+                    lblGen.Visible = false;
+                    bestScoreTime.Visible = false;
                     btnSave.Visible = false;
                     StartLoadPlayerGame();
                     break;
