@@ -424,6 +424,11 @@ namespace FlappyBirdCSharp
                     this.Text = "Flappy Bird - Training";
                     gameTimer.Interval = 2;
                     bird.Visible = false;
+                    label1.Text = "";
+                    label2.Text = "";
+                    lblGen.Visible = true;
+                    bestScoreTime.Visible = true;
+                    btnSave.Visible = true;
                     StartTrainGame();
                     break;
                 case NetParams.GAME_MODE.LOADING:
@@ -451,18 +456,33 @@ namespace FlappyBirdCSharp
         private void StartLoadPlayerGame()
         {
             initScorePipesAndClouds();
-            LoadPlayer();
+            if (!LoadPlayer())
+            {
+                MessageBox.Show("Failed to load player. Starting training mode instead.");
+                startGame(NetParams.GAME_MODE.TRAINING);
+                return;
+            }
             AIPlyaer.getBird().Location = new Point(53, 175);
             this.Controls.Add(AIPlyaer.getBird());
             bird.Visible = false;
             gameTimer.Start();
         }
 
-        private void LoadPlayer()
+        private bool LoadPlayer()
         {
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            folder += "\\player.json";
-            AIPlyaer = readFile(folder);
+            try
+            {
+                string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                folder += "\\player.json";
+                AIPlyaer = readFile(folder);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading player: " + ex.Message);
+                return false;
+            }
+
         }
 
         private void StartTrainGame()
