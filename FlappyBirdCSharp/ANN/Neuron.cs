@@ -64,7 +64,7 @@ namespace FlappyBirdCSharp.ANN
             double sum = 0;
             for (int i = 0; i< Weights.Length; i++)
             {
-                sum += Weights[i] * (inputs[i]/1.7);
+                sum += Weights[i] * (inputs[i]);
             }
             sum = NetParams.tanh(sum);
             return sum;

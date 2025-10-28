@@ -514,7 +514,7 @@ namespace FlappyBirdCSharp
             stopwatch = new Stopwatch();
             initScorePipesAndClouds();
             population = new Population();
-
+            restartButton.Visible = false;
             foreach (Player p in population.players)
             {
                 p.getBird().Location = new Point(53, 175);
