@@ -52,19 +52,19 @@ namespace FlappyBirdCSharp.ANN
         {
             for (int i = 0; i< Weights.Length; i++)
             {
-                Weights[i] = rnd.NextDouble();
+                Weights[i] = rnd.NextDouble()*2-1;
             }
         }
 
         /// <summary>
         /// Calculates the neuron's output by applying the activation function to the weighted sum of inputs.
         /// </summary>
-        public double Activate(double[] inputs)
+        public double Forward(double[] inputs)
         {
             double sum = 0;
             for (int i = 0; i< Weights.Length; i++)
             {
-                sum += Weights[i] * inputs[i];
+                sum += Weights[i] * (inputs[i]/1.7);
             }
             sum = NetParams.tanh(sum);
             return sum;
@@ -80,11 +80,11 @@ namespace FlappyBirdCSharp.ANN
             {
                 if (rnd.NextDouble() > tilt)
                 {
-                    result.Weights[i] = parentA.Weights[i];
+                    result.Weights[i] = parentB.Weights[i];
                 }
                 else
                 {
-                    result.Weights[i] = parentB.Weights[i];
+                    result.Weights[i] = parentA.Weights[i];
                 }
             }
             if (rnd.NextDouble() > 0.5)
@@ -100,13 +100,13 @@ namespace FlappyBirdCSharp.ANN
         /// </summary>
         private Neuron applyMutation(Neuron result)
         {
-            if (rnd.NextDouble() < NetParams.MUTATION_RATE)
-            {
+           
                 for (int i = 0; i < result.Weights.Length; i++)
                 {
-                    result.Weights[i] = rnd.NextDouble() * 4 - 2;
+                    if (rnd.NextDouble() < NetParams.MUTATION_RATE)
+                        result.Weights[i] = rnd.NextDouble() * 4 - 2;
                 }
-            }
+           
             return result;
         }
     }

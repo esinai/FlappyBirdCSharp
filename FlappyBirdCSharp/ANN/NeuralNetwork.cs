@@ -36,16 +36,13 @@ namespace FlappyBirdCSharp.ANN
         /// </summary>
         /// <param name="inputs">Input values for the network.</param>
         /// <returns>Output values from the network.</returns>
-        public double[] Activate(double[] inputs)
+        public double[] Forward(double[] inputs)
         {
             for (int i = 1; i < Layers.Length; i++)
             {
-                inputs = Layers[i].Activate(inputs);
+                inputs = Layers[i].Forward(inputs);
             }
-            for (int i = 0; i < inputs.Length; i++)
-            {
-                //inputs[i] = Sigmoid(inputs[i]);
-            }
+           
             return inputs;
         }
 

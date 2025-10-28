@@ -49,7 +49,9 @@ namespace FlappyBirdCSharp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 685);
             this.Controls.Add(this.neuralNetworkControl1);
+            this.Location = new System.Drawing.Point(800, 0);
             this.Name = "NetworkWin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "NetworkWin";
             this.Load += new System.EventHandler(this.NetworkWin_Load);
             this.ResumeLayout(false);

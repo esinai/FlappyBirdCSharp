@@ -27,17 +27,17 @@ namespace FlappyBirdCSharp.ANN
         /// <summary>
         /// Probability of mutation during crossover.
         /// </summary>
-        public static double MUTATION_RATE = 0.4;
+        public static double MUTATION_RATE = 0.1;
 
         /// <summary>
         /// Fraction of the population that survives to the next generation.
         /// </summary>
-        public static double SURVIVE_RATE = 0.1;
+        public static double SURVIVE_RATE = 0.19;
 
         /// <summary>
         /// Shape of the neural network (neurons per layer).
         /// </summary>
-        public static int [] NETWORK_SHAPE = { 3, 4, 2, 1 };
+        public static int [] NETWORK_SHAPE = { 3, 4,2, 1 };
 
         /// <summary>
         /// Sigmoid activation function.

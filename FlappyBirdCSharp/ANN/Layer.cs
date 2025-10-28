@@ -44,12 +44,12 @@ namespace FlappyBirdCSharp.ANN
         /// <summary>
         /// Activates the layer by feeding inputs through all neurons and returning their outputs.
         /// </summary>
-        public double[] Activate(double[] inputs)
+        public double[] Forward(double[] inputs)
         {
             double[] output = new double[numOfNeurons];
             for (int i = 0; i < Neurons.Length; i++)
             {
-                output[i] = Neurons[i].Activate(inputs);
+                output[i] = Neurons[i].Forward(inputs);
             }
             return output;
         }

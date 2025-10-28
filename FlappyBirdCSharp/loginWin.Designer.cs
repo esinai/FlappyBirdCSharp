@@ -184,6 +184,7 @@
             this.Name = "loginWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game Options";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.loginWin_FormClosing);
             this.Load += new System.EventHandler(this.loginWin_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

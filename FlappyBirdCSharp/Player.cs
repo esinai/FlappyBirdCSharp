@@ -53,7 +53,7 @@ namespace FlappyBirdCSharp
             this.bird.Image = global::FlappyBirdCSharp.Properties.Resources.bird;
             this.bird.Location = new System.Drawing.Point(53, 175);
             this.bird.Name = "bird"+id;
-            this.bird.Size = new System.Drawing.Size(50, 50);
+            this.bird.Size = new System.Drawing.Size(40, 40);
             this.bird.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bird.TabIndex = 0;
             this.bird.TabStop = false;
@@ -77,7 +77,7 @@ namespace FlappyBirdCSharp
             result.bird.Image = global::FlappyBirdCSharp.Properties.Resources.bird;
             result.bird.Location = new System.Drawing.Point(53, 175);
             result.bird.Name = "bird" + id;
-            result.bird.Size = new System.Drawing.Size(50, 50);
+            result.bird.Size = new System.Drawing.Size(40, 40);
             result.bird.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             result.bird.TabIndex = 0;
             result.bird.TabStop = false;

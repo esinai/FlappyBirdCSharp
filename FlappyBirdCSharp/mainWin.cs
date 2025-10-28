@@ -26,6 +26,7 @@ namespace FlappyBirdCSharp
         int count = 0;
         int cloudCount = 0;
         Player AIPlyaer;
+        bool isClosed = false;
 
         NetworkWin networkWin;
         Population population;
@@ -33,18 +34,22 @@ namespace FlappyBirdCSharp
         int genration;
         public mainWin()
         {
-            InitializeComponent();                     
+            InitializeComponent();
+            isClosed = false;
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             btnLoad.Visible = false;
             btnLoad.Enabled = false;
             loginWin login = new loginWin(this);
             login.ShowDialog();
             genration = 1;
+            //this.StartPosition = 
             //Set ground as parent for score text 
-            
-            
+
+
         }
         // what happens when timmer is running 
         private void gameTimerEvent(object sender, EventArgs e)
@@ -79,7 +84,7 @@ namespace FlappyBirdCSharp
             double[] outputs;
             double out1;
             inputs = getInput(AIPlyaer);
-            outputs = AIPlyaer.neuranNetwork.Activate(inputs);
+            outputs = AIPlyaer.neuranNetwork.Forward(inputs);
             out1 = NetParams.Sigmoid(outputs[0]);
             if (out1 > 0.444)
             {
@@ -111,9 +116,9 @@ namespace FlappyBirdCSharp
             foreach (Player p in population.players)
             {
                 inputs = getInput(p);
-                outputs = p.neuranNetwork.Activate(inputs);
+                outputs = p.neuranNetwork.Forward(inputs);
                 out1 = NetParams.Sigmoid(outputs[0]);
-                if (out1 > 0.444)
+                if (out1 > 0.5)
                 {
                     gravity = -20;
                 }
@@ -270,7 +275,7 @@ namespace FlappyBirdCSharp
                 int x2 = pipeBottom1.Location.X;
                 int y2 = pipeBottom1.Location.Y;
                 inputs = getInput(p);
-                double [] output = p.neuranNetwork.Activate(inputs);
+                double [] output = p.neuranNetwork.Forward(inputs);
                 
                 networkWin.setNetwork(toShow.neuranNetwork,inputs);
                 str = "x = " + x + " y = " + y + Environment.NewLine;
@@ -340,14 +345,17 @@ namespace FlappyBirdCSharp
             {
                 case NetParams.GAME_MODE.PLAYING:
                     bird.Visible = true;
+                    isClosed = true;
                     endSingleGame();
                     break;
                 case NetParams.GAME_MODE.TRAINING:
                     bird.Visible = false;
+                    isClosed = true;
                     endTrainingGame();
                     break;
                 case NetParams.GAME_MODE.LOADING:
                     bird.Visible = false;
+                    isClosed = true;
                     endLoadingGame();
                     break;
                 default:
@@ -473,9 +481,24 @@ namespace FlappyBirdCSharp
             try
             {
                 string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                folder += "\\player.json";
-                AIPlyaer = readFile(folder);
-                return true;
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+                // Set the filter to show only JSON files and then all files
+                openFileDialog1.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 1; // Selects the JSON filter by default
+                openFileDialog1.InitialDirectory = folder;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the path of the selected file
+                    string filePath = openFileDialog1.FileName;
+                    AIPlyaer = readFile(filePath);
+                    return true;
+                }
+
+                return false;
+
+
+
             }
             catch (Exception ex)
             {
@@ -563,7 +586,8 @@ namespace FlappyBirdCSharp
         {
             Player player= population.players.OrderByDescending(p => p.score).FirstOrDefault();
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            folder += "\\player.json";
+            string fileName = "\\"+DateTime.Now.ToString("dd.MM.yyyy.HH.mm")+ "_player.json";
+            folder += fileName;
             TextWriter writer = null;
             try
             {
@@ -602,6 +626,14 @@ namespace FlappyBirdCSharp
                 population.addPlayer(player);
             }
             restartButton_Click(null, null);
+        }
+
+        private void mainWin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosed)
+            {
+                Application.Exit();
+            }
         }
     }
 }

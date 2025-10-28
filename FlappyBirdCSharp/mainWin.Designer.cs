@@ -68,7 +68,6 @@
             // 
             // gameTimer
             // 
-            this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimerEvent);
             // 
             // restartButton
@@ -227,6 +226,8 @@
             this.MaximumSize = new System.Drawing.Size(785, 730);
             this.MinimumSize = new System.Drawing.Size(785, 730);
             this.Name = "mainWin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainWin_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gameKeyIsDown);

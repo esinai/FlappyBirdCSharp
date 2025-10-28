@@ -71,7 +71,7 @@ namespace FlappyBirdCSharp.UCUtils
 
             for (int l = 1; l < _network.Layers.Length; l++)
             {
-                inputs = _network.Layers[l].Activate(inputs);
+                inputs = _network.Layers[l].Forward(inputs);
                 values.Add(inputs);
             }
 
