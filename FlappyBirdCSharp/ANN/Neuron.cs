@@ -52,7 +52,7 @@ namespace FlappyBirdCSharp.ANN
         {
             for (int i = 0; i< Weights.Length; i++)
             {
-                Weights[i] = rnd.NextDouble()*2-1;
+                Weights[i] = rnd.NextDouble()*NetParams.RANDOM_RANGE-(NetParams.RANDOM_RANGE/2);
             }
         }
 
@@ -66,7 +66,7 @@ namespace FlappyBirdCSharp.ANN
             {
                 sum += Weights[i] * (inputs[i]);
             }
-            sum = NetParams.tanh(sum);
+            //sum = NetParams.tanh(sum);
             return sum;
         }
         
@@ -104,7 +104,7 @@ namespace FlappyBirdCSharp.ANN
                 for (int i = 0; i < result.Weights.Length; i++)
                 {
                     if (rnd.NextDouble() < NetParams.MUTATION_RATE)
-                        result.Weights[i] = rnd.NextDouble() * 4 - 2;
+                        result.Weights[i] = rnd.NextDouble() * NetParams.RANDOM_RANGE - (NetParams.RANDOM_RANGE / 2);
                 }
            
             return result;

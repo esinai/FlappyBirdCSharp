@@ -298,7 +298,7 @@ namespace FlappyBirdCSharp
 
         private double [] getInput(Player p)
         {
-            double[] inputs = new double[3];
+            double[] inputs = new double[4];
             int x = p.getBird().Location.X;
             int y = p.getBird().Location.Y;
             int x1 = pipeTop1.Location.X;
@@ -310,6 +310,7 @@ namespace FlappyBirdCSharp
             inputs[0] = (x1 - x);
             inputs[1] = (y - y1);
             inputs[2] = (y2 - y);
+            inputs[3] = pipeSpeed;
             return inputs;
         }
         private void gameKeyIsDown(object sender, KeyEventArgs e)

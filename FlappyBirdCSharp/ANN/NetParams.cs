@@ -37,8 +37,10 @@ namespace FlappyBirdCSharp.ANN
         /// <summary>
         /// Shape of the neural network (neurons per layer).
         /// </summary>
-        public static int [] NETWORK_SHAPE = { 3, 6,4,2, 1 };
+        public static int [] NETWORK_SHAPE = { 4, 9,2, 1 };
 
+
+        public static double RANDOM_RANGE = 20;
         /// <summary>
         /// Sigmoid activation function.
         /// </summary>
